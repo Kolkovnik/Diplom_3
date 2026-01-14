@@ -1,4 +1,5 @@
-import api.authorizationApi;
+import api.AuthorizationApi;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
@@ -30,23 +31,24 @@ public class LogInTests extends BaseTest {
         user.setName(RandomStringUtils.randomAlphabetic(8));
         user.setEmail(RandomStringUtils.randomAlphabetic(8) + "@yandex.ru");
         user.setPassword(RandomStringUtils.randomAlphabetic(8));
-        authorizationApi.createUser(user);
+        AuthorizationApi.createUser(user);
     }
 
     @After
     public void deleteUserAfter() {
-        String accessToken = authorizationApi
+        String accessToken = AuthorizationApi
                 .loginUser(user)
                 .extract()
                 .body()
                 .path("accessToken");
         if (accessToken != null) {
-            authorizationApi.deleteUser(accessToken);
+            AuthorizationApi.deleteUser(accessToken);
         }
     }
 
     @Test
     @DisplayName("Успешное логирование через кнопку 'Войти в аккаунт' на главной странице")
+    @Description("Возможность залогиниться через кнопку 'Войти в аккаунт' на главной странице")
     public void logInWithLogInButtonInMainPageTest() {
         mainPage.clickLogInButtonInMainPage();
 
@@ -62,6 +64,7 @@ public class LogInTests extends BaseTest {
 
     @Test
     @DisplayName("Успешное логирование через кнопку 'Личный кабинет' на главной странице")
+    @Description("Возможность залогиниться через кнопку 'Личный кабинет' на главной странице")
     public void logInWithPrivateCabinetButtonTest() {
         mainPage.clickPrivateCabinetButton();
 
@@ -77,6 +80,7 @@ public class LogInTests extends BaseTest {
 
     @Test
     @DisplayName("Успешное логирование через кнопку 'Войти' в форме регистрации")
+    @Description("Возможность залогиниться через кнопку 'Войти' в форме регистрации")
     public void logInWithLogInLinkInRegistrationPageTest() {
         mainPage.clickPrivateCabinetButton();
 
@@ -98,6 +102,7 @@ public class LogInTests extends BaseTest {
 
     @Test
     @DisplayName("Успешное логирование через кнопку 'Войти' в форме восстановления пароля")
+    @Description("Возможность залогиниться через кнопку 'Войти' в форме восстановления пароля")
     public void logInWithRecoverButton() {
         mainPage.clickPrivateCabinetButton();
 

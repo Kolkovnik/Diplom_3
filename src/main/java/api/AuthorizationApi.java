@@ -8,7 +8,7 @@ import pojo.User;
 
 import static io.restassured.RestAssured.given;
 
-public class authorizationApi {
+public class AuthorizationApi {
 
     @Step("Создание пользователя")
     public static ValidatableResponse createUser(User user) {

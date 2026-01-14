@@ -1,4 +1,5 @@
 target/
+!target/allure-results
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -23,6 +24,7 @@ target/
 
 .idea
 .mvn
+.allure
 
 ### NetBeans ###
 /nbproject/private/

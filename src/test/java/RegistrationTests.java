@@ -1,4 +1,4 @@
-import api.authorizationApi;
+import api.AuthorizationApi;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -32,13 +32,13 @@ public class RegistrationTests extends BaseTest {
 
     @After
     public void deleteUserAfter() {
-        String accessToken = authorizationApi
+        String accessToken = AuthorizationApi
                 .loginUser(user)
                 .extract()
                 .body()
                 .path("accessToken");
         if (accessToken != null) {
-            authorizationApi.deleteUser(accessToken);
+            AuthorizationApi.deleteUser(accessToken);
         }
     }
 
@@ -61,7 +61,7 @@ public class RegistrationTests extends BaseTest {
 
         logInPage.waitForVisibleLogInButtonInLoginPage();
 
-        authorizationApi
+        AuthorizationApi
                 .loginUser(user)
                 .statusCode(SC_OK)
                 .body("success", equalTo(true))
